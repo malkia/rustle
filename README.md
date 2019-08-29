@@ -1,2 +1,5 @@
-# rustle
-bazel+rust experiments
+# Explore using rust with bazel
+
+## Just run it:
+bazel run :hello
+
