@@ -24,3 +24,14 @@ You can issue ```bazel fetch``` when you have
 good connection, and then can work offline, once
 the toolchain is there.
 
+## Getting it running on ***Windows***:
+Things are not working perfectly on windows right now,
+seems like the rule is expecting the binary file (hello.exe)
+to be built without extension, but it does have one (as expected)
+hence it's reporting: "not all outputs were created or valid"
+look in the ```WORKSPACE``` file for more info
+
+A crude workaround, is to:
+```
+c:\p\rustle> bazel build :hello & "bazel-bin\hello"
+```

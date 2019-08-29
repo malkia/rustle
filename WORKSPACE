@@ -19,11 +19,21 @@ maybe(
 )
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories", "rust_repository_set")
 load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
 
 bazel_skylib_workspace()
 
 rust_repositories()
+
+# This allows us to build (succesfully) on Windows, yet bazel throws that "not all outputs were created or valid"
+# Most likely due to it expecting the file to be created without extension (.exe), while it does put it.
+rust_repository_set(
+    name = "rust_windows_x86_64",
+    exec_triple = "x86_64-pc-windows-msvc",
+    extra_target_triples = [], #["x86_64-unknown-linux-gnu"],
+    version = "nightly",
+    iso_date = "2019-08-22",
+)
 
 bazel_version(name = "bazel_version")
