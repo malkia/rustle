@@ -13,9 +13,9 @@ maybe(
 maybe(
     http_archive,
     name = "io_bazel_rules_rust",
-    sha256 = "abd177ff2d066072e8929c8c2c9b22aeb59b4cabdcee34e8b4555f233729707f",
-    strip_prefix = "rules_rust-minimum-bazel-22",
-    url = "https://github.com/bazelbuild/rules_rust/archive/minimum-bazel-22.tar.gz",
+    sha256 = "55968c5377d9d9f4a5c61780c8a041d478eaac26d984d19fd589afaf12b353dc",
+    strip_prefix = "rules_rust-05bd7d1d1bd34225a6614fc131267181aee2b61e",
+    url = "https://github.com/bazelbuild/rules_rust/archive/05bd7d1d1bd34225a6614fc131267181aee2b61e.tar.gz",
 )
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
@@ -23,5 +23,7 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
 
 bazel_skylib_workspace()
+
 rust_repositories()
+
 bazel_version(name = "bazel_version")
