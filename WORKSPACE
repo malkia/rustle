@@ -13,11 +13,11 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "io_bazel_rules_rust",
-    sha256 = "c82118824b2448b77146f1dae97b6eaa717babedad0822aca4879f3cbbf2b7b5",
-    strip_prefix = "rules_rust-3228ccd3814c2ad0d7307d2f87fb8ff9616149d7",
+    #sha256 = "c82118824b2448b77146f1dae97b6eaa717babedad0822aca4879f3cbbf2b7b5",
+    strip_prefix = "rules_rust-minimum-bazel-22",
     urls = [
         # Master branch as of 2018-12-11
-        "https://github.com/bazelbuild/rules_rust/archive/3228ccd3814c2ad0d7307d2f87fb8ff9616149d7.tar.gz",
+        "https://github.com/bazelbuild/rules_rust/archive/minimum-bazel-22.tar.gz",
     ],
 )
 
