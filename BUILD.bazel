@@ -9,6 +9,7 @@ load(
 rust_binary(
     name = "hello",
     srcs = ["hello.rs"],
+    deps = [ "//cargo:string_interner" ],
 )
 
 rust_doc(
