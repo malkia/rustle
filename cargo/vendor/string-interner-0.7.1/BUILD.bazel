@@ -23,23 +23,24 @@ load(
 )
 
 
-# Unsupported target "filters" with type "test" omitted
 
 rust_library(
-    name = "log",
+    name = "string_interner",
     crate_root = "src/lib.rs",
     crate_type = "lib",
-    edition = "2015",
+    edition = "2018",
     srcs = glob(["**/*.rs"]),
     deps = [
+        "//cargo/vendor/serde-1.0.99:serde",
     ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.3.6",
+    version = "0.7.1",
     crate_features = [
         "default",
-        "use_std",
+        "serde",
+        "serde_support",
     ],
 )
 

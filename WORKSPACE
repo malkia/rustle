@@ -36,4 +36,14 @@ rust_repository_set(
     iso_date = "2019-08-22",
 )
 
+# This allows us to build (succesfully) on Windows, yet bazel throws that "not all outputs were created or valid"
+# Most likely due to it expecting the file to be created without extension (.exe), while it does put it.
+rust_repository_set(
+    name = "rust_linux_x86_64",
+    exec_triple = "x86_64-unknown-linux-gnu",
+    extra_target_triples = [], #["x86_64-unknown-linux-gnu"],
+    version = "nightly",
+    iso_date = "2019-09-01",
+)
+
 bazel_version(name = "bazel_version")

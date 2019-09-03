@@ -3,16 +3,33 @@ package(default_visibility = ["//visibility:public"])
 load(
     "@io_bazel_rules_rust//rust:rust.bzl",
     "rust_binary",
-    "rust_doc",
+    "rust_library",
+)
+
+rust_library(
+    name = "hello_lib",
+    srcs = ["hello_lib.rs"],
+    deps = ["//cargo:string_interner"],
+    crate_type = "staticlib",
+)
+
+# cc_* rules expect cc_* deps, so we need to wrap our rust staticlib.
+cc_library(
+    name = "hello_lib_wrapper",
+    srcs = [":hello_lib"],
+    # We could link dynamically by setting crate_type to cdylib
+    linkstatic = True,
 )
 
 rust_binary(
     name = "hello",
     srcs = ["hello.rs"],
-    deps = [ "//cargo:string_interner" ],
+    deps = [":hello_lib"],
 )
 
-rust_doc(
-    name = "hello_doc",
-    dep = ":hello",
+cc_binary(
+    name = "native",
+    srcs = ["native.cc"],
+    deps = [":hello_lib_wrapper"],
+    linkopts = ["-pthread", "-ldl"],
 )
